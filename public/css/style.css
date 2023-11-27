@@ -1,0 +1,143 @@
+/*! GLobal */
+html {
+    /*? para que 10 pixeles sea igual a 1 rem */
+    font-size: 62.5%;
+    color: floralwhite;
+}
+
+
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+}
+img{
+    max-width: 100%;
+}
+
+
+
+/* !header */
+body {
+    background-color: #020400;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.6rem;
+
+}
+
+a {
+    color: antiquewhite;
+    text-decoration: none;
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+}
+
+a:hover {
+    background-color: #204c06;
+
+}
+
+header {
+    background-color: #091602;
+    height: 7vh;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* !main */
+
+
+.container_mein {
+
+    display: flex;
+    justify-content:space-evenly;
+    background-image: url("../img/img4.jpg");
+    background-size: cover;
+    /* Ajusta la imagen para cubrir todo el contenedor */
+    background-repeat: no-repeat;
+    /* Evita la repetición de la imagen */
+    background-attachment: fixed;
+    /* Fija la imagen de fondo en su posición */
+    background-position: center;
+    /* Centra la imagen de fondo */
+    height: calc(100vh - 50px);
+    min-height: 60rem;
+}
+.size_container{
+    width: 45vh;
+    height: 26vh;
+    background-color: rgb(40,94,8,0.20);
+    border: solid;
+    border-color: #5edd13;
+    border-radius: 25px;
+}
+.text_container{
+    /* font-size: 1.5rem; */
+    font-size: 0.9vw;
+    text-align: justify;
+    
+    
+    
+}
+.text_container h1, p{
+    color: #72ed2a;
+    padding-left: 20px;
+    padding-top: 5px;
+    
+}
+.text_container p{
+    color: #beeaa5;
+    padding-left: 20px;
+    padding-top: 5px;
+    
+}
+.perfil_container {
+    margin-top: 3%;
+
+    min-height: 20rem;
+    /* background-color: #193a05; */
+    
+    display: flex;
+    justify-content: flex-start;
+    
+
+}
+
+.perfil_container img{
+    max-width: 100%;
+    border-top-left-radius: 22px; /* Radio superior izquierdo */
+    border-bottom-left-radius: 22px; /* Radio inferior derecho */
+}
+
+.study_container{
+    margin-top: 25vh;
+
+    
+    
+}
+.languages_container{
+    
+    margin-top: 45vh;
+}
+.areas_container{
+    margin-top: 60vh;
+}
+
+
+/* !footer */
+footer {
+    background-color: #112803;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    color: antiquewhite;
+    align-items: center;
+}
+
+
