@@ -2,7 +2,6 @@ const metodosBd = {}
 const db = require('../database/db')
 
 metodosBd.get = (req, res) => {
-    console.log("get")
     db.find({}, (err, datos) => {
         if (err) {
             res.status(500).send(err)
@@ -12,7 +11,6 @@ metodosBd.get = (req, res) => {
     })
 }
 metodosBd.getId = (req, res) => {
-    console.log("getid")
     const userId = req.params.id;
     db.findOne({ _id: userId }, (err, user) => {
         if (err) {
