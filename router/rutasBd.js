@@ -8,4 +8,6 @@ router.get("/:id",metodosBd.getId)
 router.delete("/:id",metodosBd.deleted)
 router.put("/:id",metodosBd.update)
 router.delete("/reg/all",metodosBd.deleteAll)
+
+
 module.exports = router;

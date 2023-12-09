@@ -1,0 +1,5 @@
+base de datos configuracion
+const DB = [
+  { id: 1, "utm": [{ "programa": ["esta es una nota", "esta es otra"], "conta": [] }] },
+  { id: 2, "hakin": [{ "dork": [] }] }
+];

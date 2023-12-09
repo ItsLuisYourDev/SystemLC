@@ -2,7 +2,8 @@
 html {
     /*? para que 10 pixeles sea igual a 1 rem */
     font-size: 62.5%;
-    color: floralwhite;
+    color: rgb(0, 0, 0);
+
 }
 
 
@@ -141,3 +142,27 @@ footer {
 }
 
 
+/* ! task */
+
+.contenido_notas{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.contenido_categorias{
+    background-color: #00ea84;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    
+}
+
+.contenido_notas_lista{
+    background-color: #5edd13;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: 100vh;
+    
+}

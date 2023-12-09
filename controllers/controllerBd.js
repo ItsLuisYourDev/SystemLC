@@ -21,8 +21,13 @@ metodosBd.getId = (req, res) => {
     });
 }
 metodosBd.insert = (req, res) => {
-    const newUser = req.body;
-    db.insert(newUser, (err, user) => {
+    console.log(req.body)
+    const data = {
+        categoria: req.body.categoria,
+        contenido: []
+    }
+
+    db.insert(data, (err, user) => {
         if (err) {
             res.status(500).send(err);
         } else {
@@ -41,7 +46,7 @@ metodosBd.deleted = (req, res) => {
         }
     });
 }
-metodosBd.deleteAll=((req, res) => {
+metodosBd.deleteAll = ((req, res) => {
     db.remove({}, { multi: true }, (err, numRemoved) => {
         if (err) {
             res.status(500).send(err);
@@ -53,12 +58,24 @@ metodosBd.deleteAll=((req, res) => {
 
 metodosBd.update = (req, res) => {
     const userId = req.params.id;
-    const updatedUser = req.body;
-    db.update({ _id: userId }, { $set: updatedUser }, {}, (err, numReplaced) => {
+    const dataTxt = req.body.dataTxt;
+    console.log(res.body)
+    db.findOne({ _id: userId }, (err, user) => {
         if (err) {
             res.status(500).send(err);
         } else {
-            res.json({ message: `Usuario actualizado: ${numReplaced} registros modificados` });
+            user.contenido.push(dataTxt)
+            // console.log(user)
+
+            const updatedUser = user;
+            db.update({ _id: userId }, { $set: updatedUser }, {}, (err, numReplaced) => {
+                if (err) {
+                    res.status(500).send(err);
+                } else {
+                    res.json({ message: `Usuario actualizado: ${numReplaced} registros modificados` });
+                }
+            });
+
         }
     });
 }

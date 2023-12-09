@@ -1,0 +1,25 @@
+<%- include('../partials/header.ejs') %>
+    <div class="container-task">
+        <!-- <% data.forEach(function(dato) { %>
+            <li>
+                <%= dato.categoria %>
+            </li>
+            <% }); %> -->
+        <div class="contenido_notas">
+            <div class="contenido_categorias">
+                <% for (var i=0; i< data.length;i++){ %>
+                    <a href="#" class="categoria" id="<%=data[i]._id%>">
+                        <%= data[i].categoria %>
+                    </a>
+                    <% };%>
+            </div>
+            <div class="contenido_notas_lista">
+                <div id="contenidoSecundarioList">
+                    <div id="contenido_lista"></div>
+                    <div>Hola mundo </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
