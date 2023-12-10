@@ -47,7 +47,6 @@ router.get("/task", (req, res) => {
             console.log("error")
 
         } else {
-            console.log(datos)
             res.render("../view/task/index.ejs",
                 {
                     pageTitle: "task",

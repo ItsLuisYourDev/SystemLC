@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .chat-container {
+            position: fixed;
+            bottom: 0;
+            right: 20px;
+            width: 300px;
+            max-height: 400px;
+            background-color: #f1f1f1;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .chat-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .chat-content {
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+/* 
+        .new-message {
+            animation: slideDown 0.5s ease-out;
+        } */
+
+        /* @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        } */
+    </style>
+    <title>Área Deslizante</title>
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-header" onclick="toggleChat()">
+            <h2>WhatsApp Web</h2>
+        </div>
+        <div class="chat-content" id="chatContent">
+            <!-- Contenido del chat aquí -->
+        </div>
+    </div>
+    <button onclick="addMessage()">Agregar Mensaje</button>
+    <script>
+        let isOpen = false;
+
+        function toggleChat() {
+            const chatContainer = document.querySelector('.chat-container');
+            isOpen = !isOpen;
+            chatContainer.style.maxHeight = isOpen ? '400px' : '0';
+        }
+
+        function addMessage() {
+            const chatContent = document.getElementById('chatContent');
+            const newMessage = document.createElement('div');
+            newMessage.className = 'new-message';
+            newMessage.textContent = 'Nuevo mensaje';
+            chatContent.appendChild(newMessage);
+            chatContent.scrollTop = chatContent.scrollHeight;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,32 +1,22 @@
-
-// const formulario = document.getElementById('inputData');
-// const resultado = document.getElementById('resultado');
-
-
 // document.addEventListener('DOMContentLoaded', function () {
 //     formulario.addEventListener('submit', function (event) {
 //         event.preventDefault(); // Evita la recarga de la página
 //         const input1 = document.getElementById('input1').value;
 //         resultado.innerHTML = `Nombre: ${input1}<br>Email:22`;
-
-
-//     });
 // });
 
 const list_categorias = document.querySelectorAll(".categoria")
 const list_contenido = document.getElementById("contenido_lista")
-const contenedorPrincipalLista = document.getElementById("contenidoSecundarioList")
-console.log(list_categorias)
-console.log(list_contenido)
-list_contenido.innerHTML = "este ba ha ser el contendio principal de loslicnk "
+const contenct_input = document.getElementById('Container_input_texto')
+const api = "http://127.0.0.1:3000/db/"
 
+txtHtml(list_contenido, "eesre es el fej")
 
 list_categorias.forEach(categoria => {
     categoria.addEventListener("click", () => {
-        console.log(categoria.getAttribute("id"))
         const id_categoria = categoria.getAttribute("id")
-        url = "http://127.0.0.1:3000/db/".concat(id_categoria)
-        console.log(url)
+        let url = api.concat(id_categoria)
+
         fetch(url)
             .then(response => {
                 if (!response) {
@@ -37,9 +27,9 @@ list_categorias.forEach(categoria => {
             })
             .then(data => {
                 console.log(data)
+                txtHtml(list_contenido, '')
+                txtHtml(contenct_input, '')
 
-                list_contenido.innerHTML = ''
-                contenedorPrincipalLista.innerHTML=''
                 const cont = data.contenido;
                 for (let i = 0; i < cont.length; i++) {
                     const hijo = document.createElement('div')
@@ -50,18 +40,14 @@ list_categorias.forEach(categoria => {
                 const imput = document.createElement('input')
                 const summit = document.createElement('button')
                 imput.setAttribute("id", "input_text")
+                imput.setAttribute("onkeydown", `handleKeyPress(event,"${id_categoria}")`)
                 summit.setAttribute("id", "buton_send_text")
                 const send_data = `send_data("${id_categoria}")`
-
                 summit.setAttribute("onclick", send_data)
-                summit.innerHTML = "boton"
-                // list_contenido.appendChild(imput)
-                contenedorPrincipalLista.appendChild(list_contenido)
-                contenedorPrincipalLista.appendChild(imput)
-                contenedorPrincipalLista.appendChild(summit)
-                // list_contenido.appendChild(summit)
-
-
+                txtHtml(summit, "boton")
+                contenct_input.appendChild(imput)
+                contenct_input.appendChild(summit)
+                list_contenido.scrollTop = list_contenido.scrollHeight;
             })
             .catch(erro => {
                 console.error('error', erro);
@@ -70,26 +56,35 @@ list_categorias.forEach(categoria => {
 })
 function addHIjo(divPadre, cont) {
     const newHijo = document.createElement("div")
+    newHijo.className = 'new-message';
     newHijo.innerHTML = cont
     divPadre.appendChild(newHijo)
+    divPadre.scrollTop = divPadre.scrollHeight;
+}
 
+function txtHtml(elemento, txt) {
+    elemento.innerHTML = txt
 }
 
 function send_data(id) {
     const texto = document.getElementById("input_text")
-
     addHIjo(list_contenido, texto.value)
-
     var datosParaEnviar = {
         dataTxt: texto.value
     };
-    url = `http://127.0.0.1:3000/db/${id}`
+    let url = `${api}${id}`
+    texto.value = ''
+    sendPut(url, datosParaEnviar)
+}
+
+function sendPut(url, datos) {
+    console.log(datos)
     fetch(url, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(datosParaEnviar) // Convierte los datos a una cadena JSON
+        body: JSON.stringify(datos) // Convierte los datos a una cadena JSON
     })
         .then(function (response) {
             if (!response.ok) {
@@ -106,4 +101,9 @@ function send_data(id) {
 }
 
 
-// Realizar una solicitud POST utilizando fetch
+// Función para manejar la tecla Enter
+function handleKeyPress(event, id) {
+    if (event.key === 'Enter') {
+        send_data(id)
+    }
+}

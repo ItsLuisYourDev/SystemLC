@@ -21,7 +21,6 @@ metodosBd.getId = (req, res) => {
     });
 }
 metodosBd.insert = (req, res) => {
-    console.log(req.body)
     const data = {
         categoria: req.body.categoria,
         contenido: []
@@ -59,7 +58,6 @@ metodosBd.deleteAll = ((req, res) => {
 metodosBd.update = (req, res) => {
     const userId = req.params.id;
     const dataTxt = req.body.dataTxt;
-    console.log(res.body)
     db.findOne({ _id: userId }, (err, user) => {
         if (err) {
             res.status(500).send(err);
